@@ -21,12 +21,9 @@ public class PBMath {
     
     public static byte[] intToMultibyte(int n) {
         List<Byte> bytes = new ArrayList<Byte>();
-        int index = 0;
         while (n != 0) {
-            int remainder = n % 256;
-            n = n / 256;
-            bytes.add((byte) remainder);
-            index++;
+            bytes.add(0, (byte) (n % 256));
+            n /= 256;
         }
         
         byte[] out = new byte[bytes.size()];
