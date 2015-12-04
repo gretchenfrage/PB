@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class PBMath {
     
     public static int multibyteToInt(byte[] bytes) {
@@ -14,6 +17,23 @@ public class PBMath {
         } else {
             return b + 256;
         }
+    }
+    
+    public static byte[] intToMultibyte(int n) {
+        List<Byte> bytes = new ArrayList<Byte>();
+        int index = 0;
+        while (n != 0) {
+            int remainder = n % 256;
+            n = n / 256;
+            bytes.add((byte) remainder);
+            index++;
+        }
+        
+        byte[] out = new byte[bytes.size()];
+        for (int i = 0; i < out.length; i++) {
+            out[i] = bytes.get(i);
+        }
+        return out;
     }
     
 }
