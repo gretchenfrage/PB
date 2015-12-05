@@ -7,6 +7,7 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -14,9 +15,9 @@ import java.util.List;
  */
 public class VarObject extends Variable {
 
-	private Object value;
+	private Serializable value;
 	
-	public VarObject(String nameIn, Object valueIn) {
+	public VarObject(String nameIn, Serializable valueIn) {
 		super(nameIn);
 		if (valueIn == null) {
 			throw new NullPointerException();
@@ -32,7 +33,7 @@ public class VarObject extends Variable {
 				ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
 				ObjectInput in = new ObjectInputStream(bais)
 						) {
-			value = in.readObject();
+			value = (Serializable) in.readObject();
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new MalformedVariableException();
@@ -56,7 +57,7 @@ public class VarObject extends Variable {
 		}
 	}
 	
-	public void setValue(Object i) {
+	public void setValue(Serializable i) {
 		if (i == null) {
 			throw new NullPointerException();
 		} else {
@@ -64,7 +65,7 @@ public class VarObject extends Variable {
 		}
 	}
 	
-	public Object getValue() {
+	public Serializable getValue() {
 		return value;
 	}
 	

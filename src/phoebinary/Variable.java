@@ -25,6 +25,8 @@ public abstract class Variable {
 			return VAR_STRING;
 		} else if (var instanceof VarObject) {
 			return VAR_OBJECT;
+		} else if (var instanceof VarFolder) {
+			return VAR_FOLDER;
 		} else {
 			//this should never happen
 			return -1;
@@ -42,6 +44,7 @@ public abstract class Variable {
 	public static final byte VAR_LONG = 5;
 	public static final byte VAR_STRING = 6;
 	public static final byte VAR_OBJECT = 7;
+	public static final byte VAR_FOLDER = 8;
 
 	/*
 	 * the name of the variable
@@ -101,6 +104,8 @@ public abstract class Variable {
 			return new VarString(nameIn, contents);
 		} else if (type == VAR_OBJECT) {
 			return new VarObject(nameIn, contents);
+		} else if (type == VAR_FOLDER) {
+			return new VarFolder(nameIn, contents);
 		} else {
 			throw new MalformedVariableException();
 		}

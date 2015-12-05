@@ -11,7 +11,7 @@ import java.util.List;
 public class PhoeBinaryFile {
 
 	private File file;
-	private List<Variable> variables = new ArrayList<Variable>();
+	private List<Variable> variables;
 	
 	public PhoeBinaryFile(File fileIn) {
 		file = fileIn;
@@ -20,25 +20,8 @@ public class PhoeBinaryFile {
 	
 	public void readFromFile() {
 		try (FileInputStream stream = new FileInputStream(file)) {
-			while (stream.available() > 0) {
-				byte type = (byte) stream.read();
-				
-				byte[] nameLengthBytes = new byte[4];
-				stream.read(nameLengthBytes);
-				int nameLength = ByteOperations.multibyteToInt(nameLengthBytes);
-				byte[] nameBytes = new byte[nameLength];
-				stream.read(nameBytes);
-				String name = ByteOperations.bytesToString(nameBytes);
-				
-				byte[] contentsLengthBytes = new byte[4];
-				stream.read(contentsLengthBytes);
-				int contentsLength = ByteOperations.multibyteToInt(contentsLengthBytes);
-				byte[] contentsBytes = new byte[contentsLength];
-				stream.read(contentsBytes);
-				List<Byte> contents = ByteOperations.byteArrayToList(contentsBytes);
-				
-				variables.add(Variable.constructFromBinary(type, name, contents));
-			}
+			PhoeBinaryParser parser = new PhoeBinaryParser(stream);
+			variables = parser.parse();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -48,9 +31,8 @@ public class PhoeBinaryFile {
 	
 	public void writeToFile() {
 		try (FileOutputStream stream = new FileOutputStream(file)) {
-			for (Variable v : variables) {
-				stream.write(ByteOperations.byteListToArray(v.getBinary()));
-			}
+			PhoeBinarySerializer serializer = new PhoeBinarySerializer(variables);
+			serializer.serialize(stream);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
