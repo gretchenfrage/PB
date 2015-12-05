@@ -65,6 +65,29 @@ public class ByteOperations {
     }
     
     /*
+     * converts the base 256 byte list number to a long of equal value
+     */
+    public static long multibyteToLong(List<Byte> bytes) {
+    	long out = 0;
+    	for (int i = 0; i < bytes.size(); i++) {
+    		out += twosComplimentToPositive(bytes.get(bytes.size() - 1 - i)) * Math.pow(256, i);
+    	}
+    	return out;
+    }
+    
+    /*
+     * converts the long to a base 256 byte list number of equal value
+     */
+    public static List<Byte> longToMultibyteList(long n) {
+    	List<Byte> out = new ArrayList<Byte>();
+    	while (n != 0) {
+    		out.add(0, (byte) (n % 256));
+    		n /= 256;
+    	}
+    	return out;
+    }
+    
+    /*
      * converts the string to a byte array
      */
     public static byte[] stringToByteArray(String string) {
