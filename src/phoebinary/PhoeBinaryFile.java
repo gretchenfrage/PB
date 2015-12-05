@@ -55,4 +55,14 @@ public class PhoeBinaryFile {
 		variables = new ArrayList<Variable>();
 	}
 	
+	public Variable getVariable(String rawPath) {
+		String[] path = rawPath.split("\\.");
+		Variable variable = Variable.getVariableNamed(path[0], variables);
+		if (variable instanceof VarFolder) {
+			return ((VarFolder) variable).getVariable(Variable.reducePath(path));
+		} else {
+			return variable;
+		}
+	}
+	
 }

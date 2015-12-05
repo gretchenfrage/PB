@@ -32,6 +32,8 @@ public class Tester {
 		
 		PhoeBinaryFile pb2 = new PhoeBinaryFile(file);
 		System.out.println(pb2.getVariables());
+		
+		System.out.println(pb2.getVariable("folder.one"));
 	}
 	
 }

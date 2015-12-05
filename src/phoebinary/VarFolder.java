@@ -48,4 +48,13 @@ public class VarFolder extends Variable {
 		return "folder " + getName() + " = {" + variables + "}";
 	}
 	
+	public Variable getVariable(String[] path) {
+		Variable variable = Variable.getVariableNamed(path[0], variables);
+		if (variable instanceof VarFolder) {
+			return ((VarFolder) variable).getVariable(Variable.reducePath(path));
+		} else {
+			return variable;
+		}
+	}
+	
 }

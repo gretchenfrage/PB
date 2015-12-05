@@ -114,8 +114,25 @@ public abstract class Variable {
 	/*
 	 * returns the name of the variable
 	 */
-	public String getName() {
+	public final String getName() {
 		return name;
+	}
+	
+	public static final Variable getVariableNamed(String name, List<Variable> variables) {
+		for (Variable v : variables) {
+			if (v.getName().equals(name)) {
+				return v;
+			}
+		}
+		return null;
+	}
+	
+	public static final String[] reducePath(String[] path) {
+		String[] out = new String[path.length - 1];
+		for (int i = 1; i < path.length; i++) {
+			out[i - 1] = path[i];
+		}
+		return out;
 	}
 	
 }
