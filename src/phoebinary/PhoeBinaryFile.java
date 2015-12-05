@@ -1,4 +1,4 @@
-package pbinary;
+package phoebinary;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,12 +8,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PBinaryFile {
+public class PhoeBinaryFile {
 
 	private File file;
 	private List<Variable> variables = new ArrayList<Variable>();
 	
-	public PBinaryFile(File fileIn) {
+	public PhoeBinaryFile(File fileIn) {
 		file = fileIn;
 		readFromFile();
 	}

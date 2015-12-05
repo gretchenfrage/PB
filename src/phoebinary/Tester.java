@@ -1,4 +1,4 @@
-package pbinary;
+package phoebinary;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +9,7 @@ public class Tester {
 		File file = new File("test.txt");
 		file.createNewFile();
 		
-		PBinaryFile pb = new PBinaryFile(file);
+		PhoeBinaryFile pb = new PhoeBinaryFile(file);
 		
 		pb.clearVariables();
 		pb.addVariable(new VarBoolean("yes or no", true));
@@ -24,7 +24,7 @@ public class Tester {
 		
 		pb = null;
 		
-		PBinaryFile pb2 = new PBinaryFile(file);
+		PhoeBinaryFile pb2 = new PhoeBinaryFile(file);
 		System.out.println(pb2.getVariables());
 	}
 	

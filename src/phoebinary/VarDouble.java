@@ -1,4 +1,4 @@
-package pbinary;
+package phoebinary;
 
 import java.util.List;
 
