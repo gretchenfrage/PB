@@ -34,7 +34,7 @@ public class VarLong extends Variable {
 	}
 	
 	public String toString() {
-		return getName() + "=" + value;
+		return "long " + getName() + " = " + value;
 	}
 	
 }

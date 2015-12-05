@@ -34,7 +34,7 @@ public class VarString extends Variable {
 	}
 	
 	public String toString() {
-		return getName() + "=\"" + value + "\"";
+		return "string " + getName() + " = \"" + value + "\"";
 	}
 	
 }

@@ -41,7 +41,7 @@ public class VarBoolean extends Variable {
 	}
 	
 	public String toString() {
-		return getName() + "=" + value;
+		return "boolean " + getName() + " = " + value;
 	}
 	
 }

@@ -41,7 +41,7 @@ public class VarByte extends Variable {
 	}
 	
 	public String toString() {
-		return getName() + "=(byte)" + value;
+		return "byte " + getName() + " = " + value;
 	}
 	
 }

@@ -34,7 +34,7 @@ public class VarChar extends Variable {
 	}
 	
 	public String toString() {
-		return getName() + "='" + value + "'";
+		return "char " + getName() + " = '" + value + "'";
 	}
 
 }
