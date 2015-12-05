@@ -21,6 +21,8 @@ public abstract class Variable {
 			return VAR_DOUBLE;
 		} else if (var instanceof VarLong) {
 			return VAR_LONG;
+		} else if (var instanceof VarString) {
+			return VAR_STRING;
 		} else {
 			//this should never happen
 			return -1;
@@ -36,6 +38,7 @@ public abstract class Variable {
 	public static final byte VAR_CHAR = 3;
 	public static final byte VAR_DOUBLE = 4;
 	public static final byte VAR_LONG = 5;
+	public static final byte VAR_STRING = 6;
 
 	/*
 	 * the name of the variable
@@ -89,9 +92,20 @@ public abstract class Variable {
 			return new VarDouble(nameIn, contents);
 		} else if (type == VAR_LONG) {
 			return new VarLong(nameIn, contents);
+		} else if (type == VAR_BOOLEAN) {
+			return new VarBoolean(nameIn, contents);
+		} else if (type == VAR_STRING) {
+			return new VarString(nameIn, contents);
 		} else {
 			throw new MalformedVariableException();
 		}
+	}
+	
+	/*
+	 * returns the name of the variable
+	 */
+	public String getName() {
+		return name;
 	}
 	
 }

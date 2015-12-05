@@ -37,4 +37,8 @@ public class VarDouble extends Variable {
 		return value;
 	}
 	
+	public String toString() {
+		return getName() + "=" + value;
+	}
+	
 }

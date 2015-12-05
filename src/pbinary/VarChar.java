@@ -32,5 +32,9 @@ public class VarChar extends Variable {
 	public char getValue() {
 		return value;
 	}
+	
+	public String toString() {
+		return getName() + "='" + value + "'";
+	}
 
 }

@@ -40,4 +40,8 @@ public class VarBoolean extends Variable {
 		return value;
 	}
 	
+	public String toString() {
+		return getName() + "=" + value;
+	}
+	
 }

@@ -53,5 +53,9 @@ public class VarInteger extends Variable {
 	public int getValue() {
 		return value;
 	}
+	
+	public String toString() {
+		return getName() + "=" + value;
+	}
 
 }
