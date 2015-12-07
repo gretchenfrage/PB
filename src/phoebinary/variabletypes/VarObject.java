@@ -1,4 +1,4 @@
-package phoebinary;
+package phoebinary.variabletypes;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,6 +10,10 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.List;
 
+import phoebinary.ByteOperations;
+import phoebinary.MalformedVariableException;
+import phoebinary.Variable;
+
 /*
  * may not hold null values
  */
@@ -17,8 +21,8 @@ public class VarObject extends Variable {
 
 	private Serializable value;
 	
-	public VarObject(String nameIn, Serializable valueIn) {
-		super(nameIn);
+	public VarObject(String name, Serializable valueIn) {
+		super(name);
 		if (valueIn == null) {
 			throw new NullPointerException();
 		} else {
@@ -26,8 +30,11 @@ public class VarObject extends Variable {
 		}
 	}
 	
-	public VarObject(String nameIn, List<Byte> binaryContents) {
-		super(nameIn);
+	public VarObject() {
+		super(null);
+	}
+	
+	public void construct(List<Byte> binaryContents) {
 		byte[] bytes = ByteOperations.byteListToArray(binaryContents);
 		try (
 				ByteArrayInputStream bais = new ByteArrayInputStream(bytes);

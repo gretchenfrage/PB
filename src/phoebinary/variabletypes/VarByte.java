@@ -1,23 +1,30 @@
-package phoebinary;
+package phoebinary.variabletypes;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import phoebinary.MalformedVariableException;
+import phoebinary.Variable;
 
 public class VarByte extends Variable {
 
 	private byte value;
 	
-	public VarByte(String nameIn, byte valueIn) {
-		super(nameIn);
+	public VarByte(String name, byte valueIn) {
+		super(name);
 		value = valueIn;
 	}
 	
-	public VarByte(String nameIn) {
-		this(nameIn, (byte) 0);
+	public VarByte(String name) {
+		super(name);
+		value = 0;
 	}
 	
-	public VarByte(String nameIn, List<Byte> binaryContents) {
-		super(nameIn);
+	public VarByte() {
+		super(null);
+	}
+	
+	public void construct(List<Byte> binaryContents) {
 		if (binaryContents.size() == 1) {
 			value = binaryContents.get(0);
 		} else {

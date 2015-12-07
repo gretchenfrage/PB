@@ -1,4 +1,4 @@
-package phoebinary;
+package phoebinary.variabletypes;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -6,16 +6,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import phoebinary.ByteOperations;
+import phoebinary.MalformedVariableException;
+import phoebinary.MiscFunctions;
+import phoebinary.PhoeBinaryParser;
+import phoebinary.PhoeBinarySerializer;
+import phoebinary.Variable;
+
 public class VarFolder extends Variable {
 
 	private List<Variable> variables = new ArrayList<Variable>();
 	
-	public VarFolder(String nameIn) {
-		super(nameIn);
+	public VarFolder(String name) {
+		super(name);
 	}
 	
-	public VarFolder(String nameIn, List<Byte> binaryContents) {
-		super(nameIn);
+	public VarFolder() {
+		super(null);
+	}
+	
+	public void construct(List<Byte> binaryContents) {
 		try (ByteArrayInputStream stream = new ByteArrayInputStream(ByteOperations.byteListToArray(binaryContents))) {
 			PhoeBinaryParser parser = new PhoeBinaryParser(stream);
 			variables = parser.parse();
@@ -49,9 +59,9 @@ public class VarFolder extends Variable {
 	}
 	
 	public Variable getVariable(String[] path) {
-		Variable variable = Variable.getVariableNamed(path[0], variables);
+		Variable variable = MiscFunctions.getVariableNamed(path[0], variables);
 		if (variable instanceof VarFolder) {
-			return ((VarFolder) variable).getVariable(Variable.reducePath(path));
+			return ((VarFolder) variable).getVariable(MiscFunctions.reducePath(path));
 		} else {
 			return variable;
 		}

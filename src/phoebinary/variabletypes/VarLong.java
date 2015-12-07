@@ -1,22 +1,29 @@
-package phoebinary;
+package phoebinary.variabletypes;
 
 import java.util.List;
+
+import phoebinary.ByteOperations;
+import phoebinary.Variable;
 
 public class VarLong extends Variable {
 	
 	private long value;
 	
-	public VarLong(String nameIn, long valueIn) {
-		super(nameIn);
+	public VarLong(String name, long valueIn) {
+		super(name);
 		value = valueIn;
 	}
 	
-	public VarLong(String nameIn) {
-		this(nameIn, 0);
+	public VarLong(String name) {
+		super(name);
+		value = 0;
 	}
 	
-	public VarLong(String nameIn, List<Byte> binaryContents) {
-		super(nameIn);
+	public VarLong() {
+		super(null);
+	}
+	
+	public void construct(List<Byte> binaryContents) {
 		value = ByteOperations.multibyteToLong(binaryContents);
 	}
 

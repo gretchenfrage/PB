@@ -1,25 +1,44 @@
-package phoebinary;
+package phoebinary.variabletypes;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import phoebinary.MalformedVariableException;
+import phoebinary.Variable;
 
 public class VarBoolean extends Variable {
 
 	private boolean value;
 	
-	public VarBoolean(String nameIn, boolean valueIn) {
-		super(nameIn);
+	public VarBoolean(String name, boolean valueIn) {
+		super(name);
 		value = valueIn;
 	}
 	
-	public VarBoolean(String nameIn) {
-		this(nameIn, false);
+	public VarBoolean(String name) {
+		super(name);
+		value = false;
 	}
 	
 	public VarBoolean(String nameIn, List<Byte> binaryContents) {
 		super(nameIn);
 		if (binaryContents.size() == 1) {
 			value = binaryContents.get(0) == 1;
+		} else {
+			throw new MalformedVariableException();
+		}
+	}
+	
+	public VarBoolean construct(String name, List<Byte> binaryContents) {
+		super(name)
+		if (binaryContents.size() == 1) {
+			value = binaryContents.get
+		}
+	}
+	
+	public void construct(List<Byte> binaryContents) {
+		if (binaryContents.size() == 1) {
+			value = binaryContents.get(0);
 		} else {
 			throw new MalformedVariableException();
 		}

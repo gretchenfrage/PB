@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import phoebinary.variabletypes.VarFolder;
+
 public class PhoeBinaryFile {
 
 	private File file;
@@ -15,10 +17,10 @@ public class PhoeBinaryFile {
 	
 	public PhoeBinaryFile(File fileIn) {
 		file = fileIn;
-		readFromFile();
+		read();
 	}
 	
-	public void readFromFile() {
+	public void read() {
 		try (FileInputStream stream = new FileInputStream(file)) {
 			PhoeBinaryParser parser = new PhoeBinaryParser(stream);
 			variables = parser.parse();
@@ -29,7 +31,7 @@ public class PhoeBinaryFile {
 		}
 	}
 	
-	public void writeToFile() {
+	public void () {
 		try (FileOutputStream stream = new FileOutputStream(file)) {
 			PhoeBinarySerializer serializer = new PhoeBinarySerializer(variables);
 			serializer.serialize(stream);

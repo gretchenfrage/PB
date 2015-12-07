@@ -1,22 +1,30 @@
-package phoebinary;
+package phoebinary.variabletypes;
 
 import java.util.List;
+
+import phoebinary.ByteOperations;
+import phoebinary.MalformedVariableException;
+import phoebinary.Variable;
 
 public class VarDouble extends Variable {
 
 	private double value;
 	
-	public VarDouble(String nameIn, double valueIn) {
-		super(nameIn);
+	public VarDouble(String name, double valueIn) {
+		super(name);
 		value = valueIn;
 	}
 	
-	public VarDouble(String nameIn) {
-		this(nameIn, 0);
+	public VarDouble(String name) {
+		super(name);
+		value = 0;
 	}
 	
-	public VarDouble(String nameIn, List<Byte> binaryContents) {
-		super(nameIn);
+	public VarDouble() {
+		super(null);
+	}
+	
+	public void construct(List<Byte> binaryContents) {
 		try {
 			value = Double.parseDouble(ByteOperations.bytesToString(binaryContents));
 		} catch (NumberFormatException e) {

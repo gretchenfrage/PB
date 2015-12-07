@@ -1,22 +1,29 @@
-package phoebinary;
+package phoebinary.variabletypes;
 
 import java.util.List;
+
+import phoebinary.ByteOperations;
+import phoebinary.Variable;
 
 public class VarString extends Variable {
 
 	private String value;
 	
-	public VarString(String nameIn, String valueIn) {
-		super(nameIn);
+	public VarString(String name, String valueIn) {
+		super(name);
 		value = valueIn;
 	}
 	
-	public VarString(String nameIn) {
-		this(nameIn, "");
+	public VarString(String name) {
+		super(name);
+		value = "";
 	}
 	
-	public VarString(String nameIn, List<Byte> binaryContents) {
-		super(nameIn);
+	public VarString() {
+		super(null);
+	}
+	
+	public void construct(List<Byte> binaryContents) {
 		value = ByteOperations.bytesToString(binaryContents);
 	}
 

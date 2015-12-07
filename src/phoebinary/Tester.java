@@ -3,6 +3,16 @@ package phoebinary;
 import java.io.File;
 import java.io.IOException;
 
+import phoebinary.variabletypes.VarBoolean;
+import phoebinary.variabletypes.VarByte;
+import phoebinary.variabletypes.VarChar;
+import phoebinary.variabletypes.VarDouble;
+import phoebinary.variabletypes.VarFolder;
+import phoebinary.variabletypes.VarInteger;
+import phoebinary.variabletypes.VarLong;
+import phoebinary.variabletypes.VarObject;
+import phoebinary.variabletypes.VarString;
+
 public class Tester {
 
 	public static void main(String[] args) throws IOException {
@@ -26,7 +36,7 @@ public class Tester {
 		pb.addVariable(new VarString("hello", "world"));
 		pb.addVariable(new VarObject("serializable objewct test htingey", "hello world!!!"));
 		
-		pb.writeToFile();
+		pb.write();
 		
 		pb = null;
 		

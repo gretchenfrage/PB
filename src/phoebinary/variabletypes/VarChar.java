@@ -1,22 +1,29 @@
-package phoebinary;
+package phoebinary.variabletypes;
 
 import java.util.List;
+
+import phoebinary.ByteOperations;
+import phoebinary.Variable;
 
 public class VarChar extends Variable {
 
 	private char value;
 
-	public VarChar(String nameIn, char valueIn) {
-		super(nameIn);
+	public VarChar(String name, char valueIn) {
+		super(name);
 		value = valueIn;
 	}
 
-	public VarChar(String nameIn) {
-		this(nameIn, ' ');
+	public VarChar(String name) {
+		super(name);
+		value = ' ';
 	}
-
-	public VarChar(String nameIn, List<Byte> binaryContents) {
-		super(nameIn);
+	
+	public VarChar() {
+		super(null);
+	}
+	
+	public void construct(List<Byte> binaryContents) {
 		value = (char) ByteOperations.multibyteToInt(binaryContents);
 	}
 
