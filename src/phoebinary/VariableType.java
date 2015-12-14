@@ -1,18 +1,34 @@
 package phoebinary;
 
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class VariableType implements Serializable {
+import phoebinary.exceptions.InvalidVariableClassException;
 
-	public Class variableClass;
+public class VariableType implements Serializable {
+
+	private Class<? extends Variable> variableClass;
+	private Constructor<? extends Variable> variableConstructor;
 	
-	public VariableType(Class variableClassIn) {
+	public VariableType(Class<? extends Variable> variableClassIn) {
 		variableClass = variableClassIn;
+		try {
+			variableConstructor = variableClass.getDeclaredConstructor(String.class, List.class);
+			construct("test", new ArrayList<Byte>());
+		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			throw new InvalidVariableClassException();
+		}
 	}
 	
-	public Variable construct(String name, List<Byte> binaryContents) {
-		return 
+	public Variable construct(String name, List<Byte> binaryContents) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		return variableConstructor.newInstance(name, binaryContents);
+	}
+	
+	public boolean isTypeOf(Variable v) {
+		return v.getClass() == variableClass;
 	}
 	
 }

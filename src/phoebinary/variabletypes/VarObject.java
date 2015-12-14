@@ -11,8 +11,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import phoebinary.ByteOperations;
-import phoebinary.MalformedVariableException;
 import phoebinary.Variable;
+import phoebinary.exceptions.MalformedVariableException;
 
 /*
  * may not hold null values

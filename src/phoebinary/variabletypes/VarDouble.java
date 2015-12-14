@@ -3,8 +3,8 @@ package phoebinary.variabletypes;
 import java.util.List;
 
 import phoebinary.ByteOperations;
-import phoebinary.MalformedVariableException;
 import phoebinary.Variable;
+import phoebinary.exceptions.MalformedVariableException;
 
 public class VarDouble extends Variable {
 

@@ -14,6 +14,7 @@ public class PhoeBinaryFile {
 
 	private File file;
 	private List<Variable> variables;
+	private VariableTypeRegistry registry;
 	
 	public PhoeBinaryFile(File fileIn) {
 		file = fileIn;

@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import phoebinary.ByteOperations;
-import phoebinary.MalformedVariableException;
 import phoebinary.MiscFunctions;
 import phoebinary.PhoeBinaryParser;
 import phoebinary.PhoeBinarySerializer;
 import phoebinary.Variable;
+import phoebinary.exceptions.MalformedVariableException;
 
 public class VarFolder extends Variable {
 
