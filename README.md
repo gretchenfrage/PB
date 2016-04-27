@@ -1,2 +1,2 @@
 # PBinary
-Phoenix's binary storage library
+Another unfinished and abandoned library for binary data storage.
